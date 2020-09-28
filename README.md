@@ -1,2 +1,9 @@
-# island-model-memetic-algorithm
-My engineering thesis
+<a name="run"></a>
+# Run
+
+```
+$ mkdir build && cd build
+$ cmake ..
+$ make
+$ ./imma
+```
