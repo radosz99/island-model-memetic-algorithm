@@ -1,0 +1,8 @@
+Instancja; Wielkosc ; Nr ;Metoda;Czas;MinWart;MaxWart
+data18;Branch&Bound DF ;69;187
+data18;Branch&Bound DF ;71;187
+data18;Branch&Bound DF ;72067;187
+data18;Branch&Bound BF;22;187
+data18;Branch&Bound DF ;63;187
+gr17.tsp;Branch&Bound DF ;12445;2085
+gr17.tsp;Branch&Bound BF;372;2085
