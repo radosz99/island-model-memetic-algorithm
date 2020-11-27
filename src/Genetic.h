@@ -17,9 +17,10 @@ class Genetic{
 public:
 	//Default constructor
 	Genetic();
+	Genetic(string outputFilename);
 	void setSettingsGenetic(int a, int  b, double c, int d, int e, int f, int g, int h, int i);
-	int GeneticMechanism(int a, int **TSPMatrix, vector<unsigned>& islandsBest);
-    void saveToFileGenetic(string a, double b, int c, vector<unsigned>& islandsBest, int e, int f, double g, int h, int i, int j, int k, int l, int m);
+	int GeneticMechanism(int a, int **TSPMatrix, vector<unsigned>& islandsBest, int time, bool exchange, int threadsAmount);
+    void saveToFileGenetic(string a, double b, int c, vector<unsigned>& iterations);
     double getTime(Time czas, int odp);
 
 #pragma once
@@ -33,7 +34,10 @@ private:
 	int **matrix;
 	int matrixSize;
 	int timeGenetic;
+	bool exchange;
+	string filename;
 	int iterations;
+	int islandsAmount;
 	double time;
 	int populationSize;
 	double mutationProb;
@@ -42,8 +46,11 @@ private:
 	int mutationType;
 	int elitismNumber;
 	int memeticType;
+	Time onboardClock;
 
-	void launchIslands(int a, int **TSPMatrix, vector < vector<unsigned>>& best, vector<unsigned>& islandsBest);
+	static void start(int size, int **TSPMatrix, int islandId, vector < vector<unsigned>>& best, vector<unsigned>& islandIterations, int time);
+	bool checkIfTimeIsOver();
+	void launchIslands(int a, int **TSPMatrix, vector < vector<unsigned>>& best, vector<unsigned>& islandsBest, int islandsAmount);
 	void islandExchange(vector <vector<unsigned>>&population, vector < vector<unsigned>> best, int islandId);
 	void GeneticEngine(int a, int **TSPMatrix, int islandId, vector < vector<unsigned>>& best, vector<unsigned>& islandBest);
 	int costXY(int a, int b);

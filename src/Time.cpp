@@ -4,34 +4,22 @@
 using namespace std;
 using namespace std::chrono;
 
-void Time::czasStart() {
+void Time::startCounting() {
 	czasPoczatkowy = high_resolution_clock::now();
 }
 
-void Time::czasStop() {
+void Time::stopCounting() {
 	czasKoncowy = high_resolution_clock::now();
 }
 
-long Time::czasWykonania() {
+long Time::executionTime() {
 
 	return duration_cast<microseconds>(Time::czasKoncowy - Time::czasPoczatkowy).count();
 }
 
-long Time::czasWykonaniaMili() {
+long Time::executionTimeMili() {
 
 	return duration_cast<milliseconds>(Time::czasKoncowy - Time::czasPoczatkowy).count();
-}
-
-long Time::czasWykonaniaNano() {
-
-		return duration_cast<nanoseconds>(Time::czasKoncowy - Time::czasPoczatkowy).count();
-
-}
-
-long Time::czasWykonaniaSek() {
-
-	return duration_cast<seconds>(Time::czasKoncowy - Time::czasPoczatkowy).count();
-
 }
 
 Time::Time()

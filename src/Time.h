@@ -12,14 +12,12 @@ public:
 	high_resolution_clock::time_point czasPoczatkowy;
 	high_resolution_clock::time_point czasKoncowy;
 
-	void czasStart();
+	void startCounting();
 
-	void czasStop();
+	void stopCounting();
 
-	long czasWykonania();
-	long czasWykonaniaMili();
-	long czasWykonaniaNano();
-	long czasWykonaniaSek();
+	long executionTime();
+	long executionTimeMili();
 
 	Time();
 	void start();
