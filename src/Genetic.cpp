@@ -60,9 +60,9 @@ int Genetic::GeneticMechanism(int matrixSize, int **TSPMatrix, vector<unsigned>&
 
 	int bestId;
 	for (int i = 0; i < islandsAmount; i++) {
-		for(std::vector<unsigned>::const_iterator k = best.at(i).begin(); k != best.at(i).end(); ++k)
-			std::cout << *k << ' ';
-		cout << endl;
+		// for(std::vector<unsigned>::const_iterator k = best.at(i).begin(); k != best.at(i).end(); ++k)
+		// 	std::cout << *k << ' ';
+		// cout << endl;
 		if (best.at(i).at(matrixSize + 1) < result)
 			result = best.at(i).at(matrixSize + 1);
 			bestId = i;
@@ -86,7 +86,7 @@ void Genetic::launchIslands(int matrixSize, int **TSPMatrix, vector < vector<uns
 
 void Genetic::start(int size, int **TSPMatrix, int islandId, vector < vector<unsigned>>& best, vector<unsigned>& islandIterations, int time){
 	Genetic island;
-	island.setSettingsGenetic(150, 4, 0.1, 6, 2, 1, 10, 1, time);
+	island.setSettingsGenetic(150, 3, 0.1, 6, 2, 1, 10, 1, time);
 	island.GeneticEngine(size, TSPMatrix, islandId, best, islandIterations);
 }
 
@@ -128,7 +128,6 @@ void Genetic::GeneticEngine(int size, int **TSPMatrix, int islandId, vector < ve
 				mutation(offspring2);
 				memeticImprovement(offspring2);
 				newPopulation.push_back(offspring2);
-				// islandIterations.at(islandId) = j;
 			}
 		}
 
@@ -187,7 +186,6 @@ int Genetic::rouletteWheelSelection(vector <double> fitnesses) {
 	int pick = 0;
 
 	static_cast<double>(number = (double)rand() / (double)RAND_MAX);
-	//cout << number << endl;
 
 	for (int i = 0; i < fitnesses.size(); i++) {
 		totalFitness += fitnesses.at(i);
@@ -331,6 +329,7 @@ void Genetic::islandExchange(vector <vector<unsigned>>&population, vector < vect
 			cont = false;
 
 	for (int i = 0; i < best.size(); i++) {
+		cout << "wymianka";
 		for (int j = 0; j < best.size(); j++) {
 			if (i != j && cont == true) {
 				int helper = 0;
@@ -1510,7 +1509,7 @@ void Genetic::suitableRowColToInf(int **matrix, int row, int col, int size) {
 
 void Genetic::saveToFileGenetic(string a, double b, int c, vector<unsigned>& iterations) {
 	string boolExchange = exchange ? "true" : "false";
-	filename = "results_" + a + "_" + std::to_string(islandsAmount) + "threads_" + std::to_string(timeGenetic) + "seconds_" + boolExchange;
+	filename = "results_" + a + "_" + std::to_string(islandsAmount) + "threads_" + std::to_string(timeGenetic) + "seconds_" + boolExchange + ".csv";
 	ofstream plik;
 	plik.open(filename, std::ios_base::app);
 	plik << a << ";" << b << ";" << ";" << c << ";";
